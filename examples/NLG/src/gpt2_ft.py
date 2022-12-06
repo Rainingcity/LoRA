@@ -184,7 +184,7 @@ def train_validate(
     log_start_time = time.time()
     best_val_ppl = None
 
-    train_loader.sampler.set_epoch(epoch)
+    # train_loader.sampler.set_epoch(epoch)
 
     for idx, data in enumerate(train_loader):
         data = {key: value for key, value in data.items()}
@@ -286,14 +286,14 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(
         train_data, batch_size=args.train_batch_size, num_workers=0, 
-        shuffle=False, pin_memory=False, drop_last=True,
-        sampler=torch.utils.data.distributed.DistributedSampler(train_data, seed=args.random_seed)
+        shuffle=False, pin_memory=False, drop_last=True
+        # sampler=torch.utils.data.distributed.DistributedSampler(train_data, seed=args.random_seed)
     )
     
     valid_loader = DataLoader(
         valid_data, batch_size=args.valid_batch_size, num_workers=0, 
-        shuffle=False, pin_memory=False, drop_last=False,
-        sampler=torch.utils.data.distributed.DistributedSampler(valid_data, seed=args.random_seed)
+        shuffle=False, pin_memory=False, drop_last=False
+        # sampler=torch.utils.data.distributed.DistributedSampler(valid_data, seed=args.random_seed)
     )
 
     if args.model_card == 'gpt2.sm':
@@ -336,7 +336,7 @@ if __name__ == '__main__':
     scheduler = create_optimizer_scheduler(optimizer, args)
     if args.fp16:
         lm_net, optimizer = amp.initialize(lm_net, optimizer, opt_level="O1")
-    lm_net, optimizer = distributed_opt(args, lm_net, optimizer, grad_acc=args.grad_acc)
+    # lm_net, optimizer = distributed_opt(args, lm_net, optimizer, grad_acc=args.grad_acc)
 
     try:
         train_step = 0
