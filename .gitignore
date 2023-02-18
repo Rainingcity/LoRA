@@ -133,3 +133,10 @@ post/
 *.nupkg
 /Packages
 
+examples/NLG/data/ft/data.parquet
+examples/NLG/data/ft/stories_splitted.jsonl
+examples/NLG/data/ft/train_formatted.jsonl
+examples/NLG/data/ft/test_formatted.jsonl
+examples/NLG/data/ft/valid_formatted.jsonl
+examples/NLG/ft_pred.txt
+examples/NLG/ft_ref.txt
